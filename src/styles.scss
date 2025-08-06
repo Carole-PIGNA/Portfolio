@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  transition: background 0.3s, color 0.3s;
+  background-color: #F4F0ED;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #222121;
+   margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+p, a{
+  font-family: 'Poppins', sans-serif;
+  }
+h1, h2, h3{
+  color:#B2301F;
+
+  }
+h1{
+  font-family: 'Anton', sans-serif;
+
+  }
+h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+
+* {
+  box-sizing: inherit;
+}
+
+body, html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px;
+ }
+
+
+
+

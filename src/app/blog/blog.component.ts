@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
       <h2>Mon blog</h2>
       <div class="articles">
         <div class="article" *ngFor="let post of posts">
-          <img [src]="post.image" [alt]="post.titre" />
+          <img loading="lazy" [src]="post.image" [alt]="post.titre" />
           <div class="texte">
             <h3>{{ post.titre }}</h3>
             <p>{{ post.resume }}</p>

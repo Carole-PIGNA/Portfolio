@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 
             <div class="monhistoire-wrapper">
                 <div class="photo-card animate-photo">
-                      <img src="photo_profil_bckgdremoved.png" alt="photo profil" />
+                      <img loading="lazy" src="photo_profil_bckgdremoved.png" alt="photo profil" />
                       <div class="image-bottom">
                         <p class="image-caption">Certifiée et passionnée </p>
                       </div>

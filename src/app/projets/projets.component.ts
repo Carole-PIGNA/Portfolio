@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
       <h2>Mes projets</h2>
       <div class="articles">
         <div class="article" *ngFor="let projet of projets">
-          <img [src]="projet.image" [alt]="projet.nom" />
+          <img loading="lazy" [src]="projet.image" [alt]="projet.nom" />
           <div class="texte">
             <h3>{{ projet.nom }}</h3>
             <p>{{ projet.description }}</p>

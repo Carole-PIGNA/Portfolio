@@ -39,7 +39,7 @@ import { CommonModule } from '@angular/common';
         <div class="competence-list">
           <div class="competence-column">
             <div class="competence" *ngFor="let c of competences.slice(0, competences.length / 2)">
-              <img [src]="'/' + c.logo" [alt]="c.nom" class="competence-logo" />
+              <img loading="lazy" [src]="'/' + c.logo" [alt]="c.nom" class="competence-logo" />
               <div class="competence-info">
                 <span class="competence-nom">{{ c.nom }}</span>
                 <div class="competence-barre">
@@ -51,7 +51,7 @@ import { CommonModule } from '@angular/common';
           </div>
           <div class="competence-column">
             <div class="competence" *ngFor="let c of competences.slice(competences.length / 2)">
-              <img [src]="'/' + c.logo" [alt]="c.nom" class="competence-logo" />
+              <img loading="lazy" [src]="'/' + c.logo" [alt]="c.nom" class="competence-logo" />
               <div class="competence-info">
                 <span class="competence-nom">{{ c.nom }}</span>
                 <div class="competence-barre">

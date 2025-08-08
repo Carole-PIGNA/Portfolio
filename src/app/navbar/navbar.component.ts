@@ -22,7 +22,7 @@ import { CommonModule } from '@angular/common';
             <a href="#monhistoire" (click)="handleLinkClick('monhistoire', $event)">Mon histoire</a>
             <a href="#parcours" (click)="handleLinkClick('parcours', $event)">Parcours</a>
             <a href="#projets" (click)="handleLinkClick('projets', $event)">Projets</a>
-            <a href="#blog" (click)="handleLinkClick('blog', $event)">Blog</a>
+       <!--      <a href="#blog" (click)="handleLinkClick('blog', $event)">Blog</a>   -->
             <a href="#contact" (click)="handleLinkClick('contact', $event)">Contact</a>
             <a href="https://www.linkedin.com/in/aim%C3%A9e-carole-pigna-fullstackdev/" target="_blank" rel="noopener" class="linkedin-icon">
                 <i class="fab fa-linkedin"></i></a>

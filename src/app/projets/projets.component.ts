@@ -101,10 +101,10 @@ import { CommonModule } from '@angular/common';
 export class ProjetsComponent {
   projets = [
     {
-      nom: 'Reservia',
-      description: 'Site de réservation d’hébergements et d’activités dans différentes villes.',
-      image: 'reservia.png',
-      lien: 'https://lien-vers-reservia.com'
+      nom: 'Portfolio',
+      description: ' Stack technique: Html5,CSS3,Typescript,Angular,Three.js',
+      image: 'portfolio.png',
+      lien: 'https://aimeecarolepigna.netlify.app/'
     },
     {
       nom: 'OhMyFood',

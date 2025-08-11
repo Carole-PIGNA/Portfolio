@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-projets',
   standalone: true,
@@ -10,11 +9,25 @@ import { CommonModule } from '@angular/common';
       <h2>Mes projets</h2>
       <div class="articles">
         <div class="article" *ngFor="let projet of projets">
-          <img loading="lazy" [src]="projet.image" [alt]="projet.nom" />
+          <!-- Vidéo ou Image du projet -->
+          <video *ngIf="projet.video" loading="lazy" [src]="projet.video" controls>
+            <p>Vidéo non disponible pour {{ projet.nom }}.</p>
+          </video>
+          <img *ngIf="!projet.video" loading="lazy" [src]="projet.image" [alt]="projet.nom" />
+
           <div class="texte">
-            <h3>{{ projet.nom }}</h3>
-            <p>{{ projet.description }}</p>
-            <a class="lire-plus" [href]="projet.lien" target="_blank">Voir le projet</a>
+            <!-- Nom du projet -->
+            <h3 class="nom">{{ projet.nom }}</h3>
+
+            <!-- Description du projet -->
+            <p class="description">{{ projet.description }}</p>
+
+            <!-- Stack technique -->
+            <p class="stack-technique">
+              <strong>Stack technique : </strong>{{ projet.stack }}
+            </p>
+
+            <a class="lire-plus" [href]="projet.lien" target="_blank">Lien GitHub</a>
           </div>
         </div>
       </div>
@@ -28,9 +41,7 @@ import { CommonModule } from '@angular/common';
     }
 
     h2 {
-      text-align: center;
       font-size: 2.4rem;
-      margin-bottom: 1rem;
       font-weight: 600;
       color: #8B0000;
     }
@@ -53,7 +64,7 @@ import { CommonModule } from '@angular/common';
       justify-content: space-between;
     }
 
-    .article img {
+    .article video, .article img {
       width: 100%;
       height: 200px;
       object-fit: cover;
@@ -61,7 +72,7 @@ import { CommonModule } from '@angular/common';
       transition: transform 0.3s ease;
     }
 
-    .article:hover img {
+    .article:hover video, .article:hover img {
       transform: scale(1.03);
     }
 
@@ -70,16 +81,24 @@ import { CommonModule } from '@angular/common';
       flex-grow: 1;
     }
 
-    .texte h3 {
-      margin: 0;
-      font-size: 1.2rem;
+    .nom {
+      font-size: 1.5rem;
+      font-weight: 600;
       color: #3f51b5;
+      margin-bottom: 0.5rem;
     }
 
-    .texte p {
-      font-size: 0.95rem;
-      margin: 0.5rem 0 1rem;
+    .description {
+      font-size: 1rem;
       color: #555;
+      margin-bottom: 1rem;
+    }
+
+    .stack-technique {
+      font-size: 0.95rem;
+      color: #333;
+      font-style: italic;
+      margin-bottom: 1rem;
     }
 
     .lire-plus {
@@ -102,19 +121,22 @@ export class ProjetsComponent {
   projets = [
     {
       nom: 'Portfolio',
-      description: ' Stack technique: Html5,CSS3,Typescript,Angular,Three.js',
+      description: 'Un portfolio personnel qui présente mes projets et compétences.',
+      stack: 'Html5, CSS3, Typescript, Angular, Three.js',
       image: 'portfolio.png',
-      lien: 'https://aimeecarolepigna.netlify.app/'
+      lien: 'https://github.com/Carole-PIGNA/portfolio'
     },
     {
-      nom: 'OhMyFood',
-      description: 'Application mobile de présentation de restaurants gastronomiques avec animations.',
-      image: 'ohmyfood.png',
-      lien: 'https://lien-vers-ohmyfood.com'
+      nom: 'Online Library Management',
+      description: 'Application de bibliothèque en ligne pour gérer les livres et les utilisateurs.',
+      stack: 'Frontend : Angular, RxJS, HTML, CSS; Backend : Spring Boot, Spring Data JPA, MySQL',
+      video: 'presentation_libraryManagement.mp4',
+      lien: 'https://github.com/Carole-PIGNA/librarymanagementFRONT'
     },
     {
       nom: 'La Chouette Agence',
       description: 'Optimisation SEO d’un site vitrine pour une agence de communication.',
+      stack: 'SEO, Google Analytics, Performance Web',
       image: 'chouette.png',
       lien: 'https://lien-vers-chouette.com'
     }

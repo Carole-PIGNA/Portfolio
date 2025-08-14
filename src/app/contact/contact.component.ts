@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ContactService } from './contact.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   template: `
     <section class="contact">
       <h2>Me contacter</h2>
       <div class="container">
-        <form class="formulaire">
+        <form class="formulaire" (ngSubmit)="onSubmit()" >
           <label>
             Prénom :
             <input type="text" name="prenom" [(ngModel)]="form.prenom" />
@@ -129,4 +132,20 @@ export class ContactComponent {
     email: '',
     message: ''
   };
+  constructor(private contactService: ContactService) {}
+
+    onSubmit() {
+      this.contactService.sendMessage(this.form).subscribe({
+        next: response => {
+          alert('Message envoyé avec succès !');
+          this.form = { prenom: '', email: '', message: '' }; // reset du formulaire
+        },
+        error: err => {
+          console.error('Erreur lors de l’envoi :', err);
+          alert('Une erreur est survenue.');
+        }
+      });
+    }
+
 }
+

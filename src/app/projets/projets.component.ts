@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-projets',
   standalone: true,
@@ -19,14 +20,24 @@ import { CommonModule } from '@angular/common';
             <!-- Nom du projet -->
             <h3 class="nom">{{ projet.nom }}</h3>
 
-            <!-- Description du projet -->
-            <p class="description">{{ projet.description }}</p>
+            <!-- Description avec troncature -->
+            <p class="description" [class.tronquee]="!projet.isExpanded">
+              {{ projet.description }}
+            </p>
+            <button
+              *ngIf="projet.description.length > 150"
+              class="btn-lire-plus"
+              (click)="projet.isExpanded = !projet.isExpanded"
+            >
+              {{ projet.isExpanded ? 'Lire moins' : 'Lire plus' }}
+            </button>
 
             <!-- Stack technique -->
             <p class="stack-technique">
               <strong>Stack technique : </strong>{{ projet.stack }}
             </p>
 
+            <!-- Lien vers le dépôt -->
             <a class="lire-plus" [href]="projet.lien" target="_blank">Lien GitHub</a>
           </div>
         </div>
@@ -35,81 +46,126 @@ import { CommonModule } from '@angular/common';
   `,
   styles: [`
     .projets {
-      padding: 2rem;
-      text-align: center;
-      overflow-x: hidden;
+      margin-left: 25px;
+      margin-right: 25px;
     }
-
-    h2 {
-      font-size: 2.4rem;
-      font-weight: 600;
-      color: #8B0000;
+    .projets h2 {
+      text-align: center;
     }
 
     .articles {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
       margin-top: 2rem;
     }
 
     .article {
       background: #fff;
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-top: 6px solid #3f51b5;
     }
 
-    .article video, .article img {
+    .article:nth-child(2) {
+      border-top-color: #4caf50;
+    }
+    .article:nth-child(3) {
+      border-top-color: #ff9800;
+    }
+
+    .article:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    .article video,
+    .article img {
       width: 100%;
-      height: 200px;
+      height: 180px;
       object-fit: cover;
-      object-position: top;
-      transition: transform 0.3s ease;
-    }
-
-    .article:hover video, .article:hover img {
-      transform: scale(1.03);
     }
 
     .texte {
-      padding: 1rem;
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
       flex-grow: 1;
     }
 
     .nom {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #3f51b5;
-      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #333;
+      margin-bottom: 0.6rem;
     }
 
     .description {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #555;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .description.tronquee {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .btn-lire-plus {
+      background: none;
+      border: none;
+      color: #3f51b5;
+      font-weight: bold;
+      padding: 0;
       margin-bottom: 1rem;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .btn-lire-plus:hover {
+      text-decoration: underline;
     }
 
     .stack-technique {
-      font-size: 0.95rem;
-      color: #333;
-      font-style: italic;
+      margin-top: auto;
       margin-bottom: 1rem;
+      padding: 0.6rem 1rem;
+      background: #f1f1f1;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: #333;
+      text-align: center;
+      align-self: stretch;
+      line-height: 1.4;
+    }
+
+    .stack-technique strong {
+      font-weight: 600;
+      color: #222;
     }
 
     .lire-plus {
-      display: inline-block;
-      padding: 0.5rem 1rem;
+      display: block;
+      width: 100%;
+      padding: 0.8rem 1rem;
       background-color: #3f51b5;
       color: white;
-      border-radius: 6px;
+      border: none;
+      border-radius: 0 0 12px 12px;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
       transition: background 0.3s ease;
+      text-align: center;
     }
 
     .lire-plus:hover {
@@ -120,25 +176,28 @@ import { CommonModule } from '@angular/common';
 export class ProjetsComponent {
   projets = [
     {
-      nom: 'Portfolio',
-      description: 'Un portfolio personnel qui présente mes projets et compétences.',
-      stack: 'Html5, CSS3, Typescript, Angular, Three.js',
-      image: 'portfolio.png',
-      lien: 'https://github.com/Carole-PIGNA/portfolio'
+      nom: 'CRM',
+      description: 'Application CRM en cours de développement avec une interface Kanban pour la gestion des opportunités. Frontend en Angular, backend en Spring Boot, persistance via PostgreSQL. Mise en place d’un pipeline CI/CD avec GitLab CI et analyse de code automatisée via SonarCloud.',
+      stack: 'Frontend : Angular, RxJS, HTML, CSS · Backend : Spring Boot, Spring Data JPA · Tests : JUnit, Mockito · CI/CD : GitLab CI, SonarCloud · Base de données : PostgreSQL',
+      image: 'designCRM.png',
+      lien: 'https://gitlab.com/pigna-pro-tech/crm-kanban.git',
+      isExpanded: false
     },
     {
       nom: 'Online Library Management',
-      description: 'Application de bibliothèque en ligne pour gérer les livres et les utilisateurs.',
-      stack: 'Frontend : Angular, RxJS, HTML, CSS; Backend : Spring Boot, Spring Data JPA, MySQL',
+      description: 'Application web de gestion de bibliothèque permettant d’administrer les livres, les emprunts et les utilisateurs en temps réel. Interface intuitive développée en Angular, avec un backend robuste en Spring Boot.',
+      stack: 'Frontend : Angular, RxJS, HTML, CSS · Backend : Spring Boot, Spring Data JPA · Base de données : MySQL',
       video: 'presentation_libraryManagement.mp4',
-      lien: 'https://github.com/Carole-PIGNA/librarymanagementFRONT'
+      lien: 'https://github.com/Carole-PIGNA/librarymanagementFRONT',
+      isExpanded: false
     },
     {
-      nom: 'La Chouette Agence',
-      description: 'Optimisation SEO d’un site vitrine pour une agence de communication.',
-      stack: 'SEO, Google Analytics, Performance Web',
-      image: 'chouette.png',
-      lien: 'https://lien-vers-chouette.com'
+      nom: 'Portfolio',
+      description: 'Portfolio personnel interactif présentant mes projets, compétences et expériences. Développé en Angular avec intégration de Three.js pour des animations 3D modernes.',
+      stack: 'Frontend : Angular, TypeScript, HTML5, CSS3 · Animation : Three.js',
+      image: 'portfolio.png',
+      lien: 'https://github.com/Carole-PIGNA/portfolio',
+      isExpanded: false
     }
   ];
 }

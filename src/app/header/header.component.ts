@@ -37,7 +37,7 @@ import { OrdiSceneComponent } from '../ordi-scene/ordi-scene.component';
     .header {
       position: relative;
       width: 100%;
-      height: 100vh;
+      height: 100dvh; /* hauteur dynamique viewport */
       overflow: hidden;
     }
 
@@ -57,7 +57,7 @@ import { OrdiSceneComponent } from '../ordi-scene/ordi-scene.component';
       display: block;
     }
 
-    /* Texte par-dessus */
+    /* Texte par-dessus avec fond semi-transparent pour contraste */
     .overlay-text {
       position: relative;
       z-index: 10;
@@ -66,8 +66,10 @@ import { OrdiSceneComponent } from '../ordi-scene/ordi-scene.component';
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      padding-left: 5vw;
+      padding: 0 5vw; /* padding horizontal symétrique */
       box-sizing: border-box;
+      background: rgba(0, 0, 0, 0.15);
+      color: #222121;
     }
 
     .text-container {
@@ -87,7 +89,7 @@ import { OrdiSceneComponent } from '../ordi-scene/ordi-scene.component';
       font-weight: 300;
       margin-bottom: 2rem;
       line-height: 2;
-      color: #222121;
+      color: inherit; /* hérite de la couleur overlay-text */
     }
 
     .localisation {
@@ -114,6 +116,14 @@ import { OrdiSceneComponent } from '../ordi-scene/ordi-scene.component';
       font-weight: bold;
       font-size: 0.8rem;
       transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .cta:hover,
+    .cta:focus {
+      background-color: #922417; /* un peu plus foncé au hover */
+      outline: none;
     }
 
     .second-btn {
@@ -122,9 +132,11 @@ import { OrdiSceneComponent } from '../ordi-scene/ordi-scene.component';
       color: #B2301F;
     }
 
-    .second-btn:hover {
+    .second-btn:hover,
+    .second-btn:focus {
       background-color: #B2301F;
       color: #F4F0ED;
+      outline: none;
     }
 
     /* Responsive Styles */
@@ -132,8 +144,9 @@ import { OrdiSceneComponent } from '../ordi-scene/ordi-scene.component';
       .overlay-text {
         justify-content: center;
         text-align: center;
-        padding-left: 0;
         padding: 2rem;
+        background: rgba(0, 0, 0, 0.4);
+        color: #F4F0ED;
       }
 
       .text-container {
@@ -142,11 +155,10 @@ import { OrdiSceneComponent } from '../ordi-scene/ordi-scene.component';
 
       h1 {
         font-size: 2.5rem;
-          }
+      }
 
       p {
         font-size: 1.2rem;
-        color:#F4F0ED;
       }
 
       .cta-container {
@@ -157,6 +169,20 @@ import { OrdiSceneComponent } from '../ordi-scene/ordi-scene.component';
       .cta {
         width: 100%;
         text-align: center;
+      }
+
+      .cta:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
       }
     }
   `]

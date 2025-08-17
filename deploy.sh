@@ -24,7 +24,8 @@ gcloud config set project "$PROJECT"
 # Vérifie si le service existe
 if gcloud app services list | grep "$SERVICE" > /dev/null; then
   echo "---- Service $SERVICE trouvé, suppression en cours... ----"
-  gcloud app services delete "$SERVICE" --quiet
+  echo "---- Finalement on ne supprime pas car il y a du mapping ----"
+  #gcloud app services delete "$SERVICE" --quiet
 else
   echo "---- Service $SERVICE non trouvé ----"
 fi
@@ -45,9 +46,25 @@ echo "-- Deploying app to App Engine --"
 cd dist/mon-portfolio/browser
 gcloud app deploy --no-cache --quiet
 
+cd ../../../
+echo "========== deploy routing =========="
+if [[ -f dispatch.yaml ]]; then
+  echo "-- Deploying dispatch.yaml --"
+  echo "-- Attente de 10 secondes pour laisser le service s'activer --"
+  sleep 10
+  gcloud app deploy dispatch.yaml --quiet
+else
+ echo "chemin actuel: ---------- $pwd ----------"
+  echo "❌ dispatch.yaml not found."
+fi
+
 echo "✅ Déploiement terminé !"
 
 echo "-- Nettoyage post-déploiement --"
-cd ../../../
+
+sleep 10
+
+echo "---------- Domain mapping----------"
+./domain-mapping.sh
 rm -rf dist/ node_modules/ .angular/cache/*
 npm cache clean --force

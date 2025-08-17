@@ -1,0 +1,5 @@
+dispatch:
+  - url: "carolepigna.fr/*"
+    service: portfolioapp
+  - url: "www.carolepigna.fr/*"
+    service: portfolioapp

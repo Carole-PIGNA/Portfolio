@@ -10,7 +10,7 @@ service: portfolioapp
 
 handlers:
   # Sert les fichiers statiques correctement (js, css, fonts, images, etc.)
-  - url: /(.*\.(js|css|png|jpg|jpeg|gif|ico|svg|webp|woff2?|ttf|eot|otf|json|html|glb))
+  - url: /(.*\.(js|css|png|jpg|jpeg|gif|ico|svg|webp|woff2?|ttf|eot|otf|json|html|glb|pdf|mp4))
     static_files: \1
     upload: (.*)
 
@@ -18,3 +18,4 @@ handlers:
   - url: /.*
     static_files: index.html
     upload: index.html
+    secure: always

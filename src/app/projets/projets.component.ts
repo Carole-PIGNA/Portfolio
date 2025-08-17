@@ -177,7 +177,7 @@ export class ProjetsComponent {
   projets = [
     {
       nom: 'CRM',
-      description: 'Application CRM en cours de développement avec une interface Kanban pour la gestion des opportunités. Frontend en Angular, backend en Spring Boot, persistance via PostgreSQL. Mise en place d’un pipeline CI/CD avec GitLab CI et analyse de code automatisée via SonarCloud.',
+      description: 'Application CRM en développement, visant à faciliter la gestion des opportunités avec une interface Kanban. Le frontend est en cours de développement avec Angular, tandis que le backend est déjà en place avec Spring Boot et PostgreSQL pour assurer une persistance des données fiable. Le projet intègre également un pipeline CI/CD avec GitLab CI et une analyse de code automatisée via SonarCloud, garantissant ainsi un développement de qualité.',
       stack: 'Frontend : Angular, RxJS, HTML, CSS · Backend : Spring Boot, Spring Data JPA · Tests : JUnit, Mockito · CI/CD : GitLab CI, SonarCloud · Base de données : PostgreSQL',
       image: 'designCRM.png',
       lien: 'https://gitlab.com/pigna-pro-tech/crm-kanban.git',
@@ -185,7 +185,7 @@ export class ProjetsComponent {
     },
     {
       nom: 'Online Library Management',
-      description: 'Application web de gestion de bibliothèque permettant d’administrer les livres, les emprunts et les utilisateurs en temps réel. Interface intuitive développée en Angular, avec un backend robuste en Spring Boot.',
+      description: "Application de gestion de bibliothèque en temps réel, permettant une gestion fluide des livres, emprunts et utilisateurs. L'interface moderne et intuitive est développée en Angular, tandis que le backend performant est construit avec Spring Boot. L'authentification sécurisée est en cours d'intégration pour offrir une expérience utilisateur complète.",
       stack: 'Frontend : Angular, RxJS, HTML, CSS · Backend : Spring Boot, Spring Data JPA · Base de données : MySQL',
       video: 'presentation_libraryManagement.mp4',
       lien: 'https://github.com/Carole-PIGNA/librarymanagementFRONT',
@@ -193,7 +193,7 @@ export class ProjetsComponent {
     },
     {
       nom: 'Portfolio',
-      description: 'Portfolio personnel interactif présentant mes projets, compétences et expériences. Développé en Angular avec intégration de Three.js pour des animations 3D modernes.',
+      description: "Mon portfolio personnel interactif, conçu pour mettre en valeur mes projets, compétences et expériences. Il intègre des animations 3D captivantes grâce à Three.js, créant une expérience immersive et dynamique pour l'utilisateur. Le tout est construit en Angular, ce qui permet une navigation fluide et moderne.",
       stack: 'Frontend : Angular, TypeScript, HTML5, CSS3 · Animation : Three.js',
       image: 'portfolio.png',
       lien: 'https://github.com/Carole-PIGNA/portfolio',
